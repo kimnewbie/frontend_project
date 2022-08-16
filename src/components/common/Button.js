@@ -1,8 +1,8 @@
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { useNavigate } from '../../../node_modules/react-router-dom/index';
 import palette from '../../lib/styles/palette';
 
-const StyledButton = styled.button`
+const buttonStyle = css`
     border: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -14,7 +14,7 @@ const StyledButton = styled.button`
 
     background: ${palette.gray[8]};
     &:hover {
-        background: ${palette.gray[6]}
+        background: ${palette.gray[6]};
     }
 
     ${props =>
@@ -36,18 +36,20 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({ to, history, ...rest }) => {
-    const navigate = useNavigate();
+const StyledButton = styled.button`
+    ${buttonStyle}
+`;
 
-    const onClick = e => {
-        if (to) {
-            navigate(to);
-        }
-        if (rest.onclick) {
-            rest.onClick(e);
-        }
-    };
-    return <StyledButton {...rest} onClick={onClick} />
+const StyledLink = styled(Link)`
+    ${buttonStyle}
+`;
+
+const Button = props => {
+    return props.to ? (
+        <StyledLink {...props} cyan={props.cyan ? 1 : 0} />
+    ) : (
+        <StyledButton {...props} />
+    );
 };
 
 export default Button;
