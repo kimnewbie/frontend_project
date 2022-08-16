@@ -23,6 +23,7 @@ export const changeField = createAction(
         value, // 실제 바꾸려는 값
     }),
 );
+
 export const initializeForm = createAction(INITIALIZE_FORM, form => form); // register / login 
 
 export const register = createAction(REGISTER, ({ username, password }) => ({
