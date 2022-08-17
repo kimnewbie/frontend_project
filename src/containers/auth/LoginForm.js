@@ -51,11 +51,13 @@ const LoginForm = () => {
         }
         if (auth) {
             console.log('로그인 성공');
+            setError('로그인 성공');
             dispatch(check());
         }
     }, [auth, authError, dispatch]);
 
     useEffect(() => {
+        console.log(user)
         if (user) {
             navigate('/');
         }

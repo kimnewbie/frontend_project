@@ -14,8 +14,12 @@ const sagaMiddleware = createSagaMiddleware();
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [ReduxThunk, sagaMiddleware, logger] //configureStore 적용
-});
+  middleware: [
+    ReduxThunk,
+    sagaMiddleware,
+    // logger // 콘솔창이 너무 복잡해져서 주석 처리
+  ]
+});//configureStore 적용
 
 sagaMiddleware.run(rootSaga);
 

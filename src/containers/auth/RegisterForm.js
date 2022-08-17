@@ -15,7 +15,7 @@ const RegisterForm = ({ history }) => {
         form: auth.register,
         auth: auth.auth,
         authError: auth.authError,
-        user: user?.user,
+        user: user.user,
     }));
 
     // 인풋 변경 이벤트 핸들러
@@ -86,7 +86,7 @@ const RegisterForm = ({ history }) => {
 
             navigate('/');
         }
-    }, [navigate, user]);
+    }, [history, navigate, user]);
 
     return (
         <AuthForm

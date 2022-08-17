@@ -17,6 +17,10 @@ export function* userSaga() {
     yield takeLatest(CHECK, checkSaga);
 }
 
+console.log(tempSetUser)
+console.log(check)
+console.log(checkSaga)
+
 const initialState = {
     user: null,
     checkError: null,
@@ -24,20 +28,26 @@ const initialState = {
 
 export default handleActions(
     {
-        [CHECK]: (state, { payload: user }) => ({
-            ...state,
-            user,
-        }),
-        [CHECK_SUCCESS]: (state, { payload: user }) => ({
-            ...state,
-            user,
-            checkError: null,
-        }),
+        [CHECK]: (state, { payload: user }) => {
+            console.log(state, user)
+            return ({
+                ...state,
+                user,
+            })
+        },
+        [CHECK_SUCCESS]: (state, { payload: user }) => {
+            console.log(state, user)
+            return ({
+                ...state,
+                user,
+                checkError: null,
+            })
+        },
         [CHECK_FIALURE]: (state, { payload: error }) => ({
             ...state,
             user: null,
             checkError: error,
-        })
+        }),
     },
     initialState,
 );
