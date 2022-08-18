@@ -34,11 +34,6 @@ const RegisterForm = ({ history }) => {
     const onSubmit = e => {
         e.preventDefault();
         const { username, password, passwordConfirm } = form;
-        if (password !== passwordConfirm) {
-            //TODO: 오류 처리
-            return;
-        }
-        // 하나라도 비어 있다면
         if ([username, password, passwordConfirm].includes('')) {
             setError('빈 칸을 모두 입력하세요.');
             return;
@@ -62,7 +57,8 @@ const RegisterForm = ({ history }) => {
     useEffect(() => {
         if (authError) {
             // 계정명이 이미 존재할 때
-            if (authError.response.status === 409) {
+            console.log(authError)
+            if (authError.response?.status === 409) {
                 setError('이미 존재하는 계정명입니다.');
                 return;
             }

@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { takeLatest } from 'redux-saga/effects';
-import * as authAPI from '../lib/api/auth';
+import * as authAPI from '../lib/api/auth'; // 모든 rest api 가져오기
 import createRequestSaga, { createRequestActionTypes } from "../lib/createRequestSaga";
 
 const TEMP_SET_USER = 'user/TEMP_SET_USER'; // 새로고침 이후 임시 로그인 처리
@@ -16,10 +16,6 @@ const checkSaga = createRequestSaga(CHECK, authAPI.check);
 export function* userSaga() {
     yield takeLatest(CHECK, checkSaga);
 }
-
-console.log(tempSetUser)
-console.log(check)
-console.log(checkSaga)
 
 const initialState = {
     user: null,
